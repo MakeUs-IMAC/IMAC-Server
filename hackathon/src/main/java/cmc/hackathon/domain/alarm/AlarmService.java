@@ -1,6 +1,6 @@
 package cmc.hackathon.domain.alarm;
 
-import cmc.hackathon.domain.alarm.dto.GetAllRes;
+import cmc.hackathon.domain.alarm.dto.GetAllAlarmRes;
 import cmc.hackathon.domain.member.Member;
 import cmc.hackathon.domain.member.MemberRepository;
 import org.springframework.stereotype.Service;
@@ -17,9 +17,9 @@ public class AlarmService {
     private static AlarmRepository alarmRepository;
     private static MemberRepository memberRepository;
 
-    public List<GetAllRes> findAllAlarms(Long userId) {
+    public List<GetAllAlarmRes> findAllAlarms(Long userId) {
         List<Alarm> alarms = alarmRepository.findAllById(Collections.singleton(userId));
-        List<GetAllRes> getAllRes = alarms.stream().map(GetAllRes::new)
+        List<GetAllAlarmRes> getAllRes = alarms.stream().map(GetAllAlarmRes::new)
                 .collect(Collectors.toList());
         return getAllRes;
     }
