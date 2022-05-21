@@ -40,4 +40,8 @@ public class Place {
     public void addAddress(Address address) {
         addresses.add(address);
     }
+
+    public void changeAddresses(List<Address> collect) {
+        addresses.addAll(collect);
+    }
 }

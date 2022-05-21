@@ -40,8 +40,9 @@ public class Address {
         this.name = name;
     }
 
-    private void changePlace(Place place) {
+    public void changePlace(Place place) {
         this.place = place;
         place.addAddress(this);
     }
+
 }
