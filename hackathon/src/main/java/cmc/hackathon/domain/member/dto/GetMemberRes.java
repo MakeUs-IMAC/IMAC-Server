@@ -22,6 +22,6 @@ public class GetMemberRes {
         this.gender = member.getGender();
         this.phone = member.getPhone();
         this.role = member.getRole();
-        this.carType = member.getCarType()
+        this.carType = member.getCarType();
     }
 }
