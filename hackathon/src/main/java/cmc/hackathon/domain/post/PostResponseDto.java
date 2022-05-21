@@ -5,6 +5,6 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class CreateResponseDto {
+public class PostResponseDto {
 
 }
