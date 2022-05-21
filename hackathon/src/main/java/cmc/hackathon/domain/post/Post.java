@@ -52,9 +52,9 @@ public class Post extends BaseEntity {
     @JoinColumn(name = "member_id")
     private Member member;
 
-    private LocalDateTime start;
+    private LocalDateTime startDate;
 
-    private LocalDateTime end;
+    private LocalDateTime endDate;
 
     @OneToMany(mappedBy = "post", cascade = CascadeType.ALL)
     private List<Place> places = new ArrayList<>();
@@ -65,7 +65,11 @@ public class Post extends BaseEntity {
     @OneToMany(mappedBy = "post", cascade = CascadeType.ALL)
     private List<Applicants> applicants = new ArrayList<>();
 
-    public void updateStatus(TravelStatus travelStatus){
+    public Post() {
+
+    }
+
+    public void updateStatus(TravelStatus travelStatus) {
         this.travelStatus = travelStatus;
     }
 
@@ -76,10 +80,9 @@ public class Post extends BaseEntity {
         this.content = postCreateReq.getContent();
         this.participants = postCreateReq.getParticipants();
         this.driverFlag = postCreateReq.getDriverFlag();
-        this.travelStatus = TravelStatus.RECRUIT;
         this.member = postCreateReq.getMember();
-        this.start = postCreateReq.getStart();
-        this.end = postCreateReq.getEnd();
+        this.startDate = postCreateReq.getStart();
+        this.endDate = postCreateReq.getEnd();
         this.places = postCreateReq.getPlaces();
     }
 }

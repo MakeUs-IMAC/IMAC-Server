@@ -3,6 +3,7 @@ package cmc.hackathon.domain.post.dto;
 import cmc.hackathon.domain.Region;
 import cmc.hackathon.domain.post.Post;
 import lombok.Builder;
+import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -22,13 +23,16 @@ public class GetAllRes {
     //인원
     private int participants;
 
+    public GetAllRes() {
+    }
+
     @Builder
     public GetAllRes(Post post){
         this.id = post.getId();
         this.image = post.getImage();
         this.region = post.getRegion();
-        this.start = post.getStart();
-        this.end = post.getEnd();
+        this.start = post.getStartDate();
+        this.end = post.getEndDate();
         this.participants = post.getParticipants();
     }
 }
