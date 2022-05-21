@@ -1,5 +1,6 @@
 package cmc.hackathon.domain.address;
 
+import cmc.hackathon.domain.BaseEntity;
 import cmc.hackathon.domain.place.Place;
 import lombok.Getter;
 import org.hibernate.annotations.Where;
@@ -9,7 +10,7 @@ import javax.persistence.*;
 @Where(clause = "status='ACTIVE'")
 @Getter
 @Entity
-public class Address {
+public class Address extends BaseEntity {
 
     @Id
     @GeneratedValue

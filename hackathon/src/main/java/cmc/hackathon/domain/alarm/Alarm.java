@@ -1,5 +1,6 @@
 package cmc.hackathon.domain.alarm;
 
+import cmc.hackathon.domain.BaseEntity;
 import cmc.hackathon.domain.member.Member;
 import lombok.Builder;
 import lombok.Getter;
@@ -10,7 +11,7 @@ import javax.persistence.*;
 @Where(clause = "status='ACTIVE'")
 @Entity
 @Getter
-public class Alarm {
+public class Alarm extends BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "alarm_id")
@@ -31,5 +32,8 @@ public class Alarm {
         this.from = from;
         this.to = to;
         this.message = message;
+    }
+
+    public Alarm() {
     }
 }
