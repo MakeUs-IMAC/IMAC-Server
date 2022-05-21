@@ -29,7 +29,7 @@ public class PostController {
 
     @ApiOperation("여행 모집 글 쓰긩")
     @PostMapping("/new")
-    public BaseResponse<String> createPost(@RequestBody Long userId, PostCreateReq postCreateReq, @RequestPart(required = false) MultipartFile image) throws IOException {
+    public BaseResponse<String> createPost(@RequestParam Long userId, @RequestBody PostCreateReq postCreateReq, @RequestPart(required = false) MultipartFile image) throws IOException {
 
         try {
             Long userIdByJwt = jwtService.getUserIdx();
