@@ -62,6 +62,25 @@ public class PostController {
         return new BaseResponse<>(getDetailRes);
     }
 
+    @ApiOperation("동행자 지원")
+    @PatchMapping("/{postId}/{applicantsId")
+    public BaseResponse<String> addApplicants(@PathVariable(name = "PostId") Long postId, @PathVariable(name = "applicantsId") Long applicantsId){
+
+        try {
+            Long userIdByJwt = jwtService.getUserIdx();
+
+            if (!Objects.equals(applicantsId, userIdByJwt)) {
+                return new BaseResponse<>(INVALID_USER_JWT);
+            }
+
+        } catch (BaseException e) {
+            return new BaseResponse<>(EMPTY_JWT);
+        }
+
+        postService.addApplicants(postId, applicantsId);
+        return new BaseResponse<String>("");
+
+    }
 
     @ApiOperation("상태 수정")
     @PatchMapping("/{postId}")

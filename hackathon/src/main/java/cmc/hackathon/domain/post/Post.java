@@ -111,7 +111,11 @@ public class Post extends BaseEntity {
 
     }
 
+    public void addApplicants(Applicants applicant){
+        applicants.add(applicant);
+    }
+
     public void updateCompanions(Companion companion){
-        this.companions.add(companion);
+        companions.add(companion);
     }
 }

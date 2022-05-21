@@ -8,7 +8,6 @@ import cmc.hackathon.domain.member.MemberRepository;
 import cmc.hackathon.domain.member.Role;
 import cmc.hackathon.domain.place.Place;
 import cmc.hackathon.domain.post.dto.GetAllRes;
-import cmc.hackathon.domain.post.dto.PlaceDto;
 import cmc.hackathon.domain.post.dto.PostCreateReq;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -90,5 +89,16 @@ public class PostService {
                 .build();
 
         post.get().updateCompanions(companion);
+    }
+
+    public void addApplicants(Long postId, Long applicantsId) {
+        Optional<Post> post = postRepository.findById(postId);
+        Optional<Member> member = memberRepository.findById(applicantsId);
+        Applicants applicant = Applicants.builder()
+                        .post(post.get())
+                                .member(member.get())
+                                        .build();
+
+        post.get().addApplicants(applicant);
     }
 }

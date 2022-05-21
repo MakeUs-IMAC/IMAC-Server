@@ -2,6 +2,7 @@ package cmc.hackathon.domain.applicants;
 
 import cmc.hackathon.domain.member.Member;
 import cmc.hackathon.domain.post.Post;
+import lombok.Builder;
 import lombok.Getter;
 import org.hibernate.annotations.Where;
 
@@ -23,4 +24,10 @@ public class Applicants {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "member_id")
     private Member member;
+
+    @Builder
+    public Applicants(Post post, Member member){
+        this.post = post;
+        this.member = member;
+    }
 }
