@@ -1,5 +1,6 @@
 package cmc.hackathon.domain.place;
 
+import cmc.hackathon.domain.BaseEntity;
 import cmc.hackathon.domain.address.Address;
 import cmc.hackathon.domain.post.Post;
 import lombok.Getter;
@@ -12,7 +13,7 @@ import java.util.List;
 @Where(clause = "status='ACTIVE'")
 @Getter
 @Entity
-public class Place {
+public class Place extends BaseEntity {
 
     @Id
     @GeneratedValue

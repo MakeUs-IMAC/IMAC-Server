@@ -1,5 +1,6 @@
 package cmc.hackathon.domain.companion;
 
+import cmc.hackathon.domain.BaseEntity;
 import cmc.hackathon.domain.member.Member;
 import cmc.hackathon.domain.post.Post;
 import lombok.Builder;
@@ -11,7 +12,7 @@ import javax.persistence.*;
 @Where(clause = "status='ACTIVE'")
 @Entity
 @Getter
-public class Companion {
+public class Companion extends BaseEntity{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "companion_id")
@@ -24,6 +25,9 @@ public class Companion {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "member_id")
     private Member member;
+
+    public Companion() {
+    }
 
     @Builder
     public Companion(Post post, Member member){

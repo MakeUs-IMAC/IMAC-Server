@@ -1,5 +1,6 @@
 package cmc.hackathon.domain.applicants;
 
+import cmc.hackathon.domain.BaseEntity;
 import cmc.hackathon.domain.member.Member;
 import cmc.hackathon.domain.post.Post;
 import lombok.Builder;
@@ -11,7 +12,7 @@ import javax.persistence.*;
 @Where(clause = "status='ACTIVE'")
 @Getter
 @Entity
-public class Applicants {
+public class Applicants extends BaseEntity {
     @Id
     @GeneratedValue
     @Column(name = "applicants_id")
@@ -24,6 +25,9 @@ public class Applicants {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "member_id")
     private Member member;
+
+    public Applicants() {
+    }
 
     @Builder
     public Applicants(Post post, Member member){

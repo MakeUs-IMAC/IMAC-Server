@@ -1,5 +1,6 @@
 package cmc.hackathon.domain.review;
 
+import cmc.hackathon.domain.BaseEntity;
 import cmc.hackathon.domain.member.Member;
 import cmc.hackathon.domain.review.dto.PostCreateReq;
 import lombok.Builder;
@@ -12,7 +13,7 @@ import javax.persistence.*;
 @Where(clause = "status='ACTIVE'")
 @Getter
 @Entity
-public class Review {
+public class Review extends BaseEntity {
 
     @Id
     @GeneratedValue
@@ -42,5 +43,8 @@ public class Review {
         this.rate = createReq.getRate();
         this.title = createReq.getTitle();
         this.content = createReq.getContent();
+    }
+
+    public Review() {
     }
 }

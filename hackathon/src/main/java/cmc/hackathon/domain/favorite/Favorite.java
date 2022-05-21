@@ -1,5 +1,6 @@
 package cmc.hackathon.domain.favorite;
 
+import cmc.hackathon.domain.BaseEntity;
 import cmc.hackathon.domain.member.Member;
 import cmc.hackathon.domain.post.Post;
 import lombok.Getter;
@@ -10,7 +11,7 @@ import javax.persistence.*;
 @Where(clause = "status='ACTIVE'")
 @Getter
 @Entity
-public class Favorite {
+public class Favorite extends BaseEntity {
 
     @Id
     @GeneratedValue
