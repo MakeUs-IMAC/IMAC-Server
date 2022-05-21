@@ -2,6 +2,7 @@ package cmc.hackathon.domain.member;
 
 import cmc.hackathon.domain.BaseEntity;
 import cmc.hackathon.domain.Gender;
+import cmc.hackathon.domain.Status;
 import cmc.hackathon.domain.applicants.Applicants;
 import cmc.hackathon.domain.favorite.Favorite;
 import cmc.hackathon.domain.post.Post;
@@ -77,5 +78,28 @@ public class Member extends BaseEntity {
     public Member update(String name) {
         this.name = name;
         return this;
+    }
+
+    public Member addInfo(String nickName, String phone, Gender gender, int age) {
+        this.nickname = nickName;
+        this.phone = phone;
+        this.gender = gender;
+        this.age = age;
+        return this;
+    }
+
+    public void edit(String nickname, String image, String phone){
+        this.nickname = nickname;
+        this.image = image;
+        this.phone = phone;
+    }
+
+    public void editWithOutImage(String nickName, String phone) {
+        this.nickname = nickname;
+        this.phone = phone;
+    }
+
+    public void delete() {
+        changeStatus(Status.DELETED);
     }
 }
