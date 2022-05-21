@@ -23,7 +23,7 @@ public class ReviewController {
 
     @ApiOperation("후기 작성")
     @PostMapping("/review/{userId}/{postId}")
-    public BaseResponse<String> createReview(@PathVariable(name = "userId") Long userId, @PathVariable(name = "postId") Long postId, PostCreateReq postCreateReq){
+    public BaseResponse<String> createReview(@PathVariable(name = "userId") Long userId, @PathVariable(name = "postId") Long postId, @RequestBody PostCreateReq postCreateReq){
 
         try {
             Long userIdByJwt = jwtService.getUserIdx();
