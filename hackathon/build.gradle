@@ -42,6 +42,9 @@ dependencies {
 	implementation group: 'io.springfox', name: 'springfox-swagger2', version: '2.9.2'
 
 	implementation 'org.springframework.cloud:spring-cloud-starter-aws:2.2.6.RELEASE'
+
+	//apns-http2
+	implementation 'com.clevertap.apns:apns-http2:1.0.3'
 }
 
 tasks.named('test') {
