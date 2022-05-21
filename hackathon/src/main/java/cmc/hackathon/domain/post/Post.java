@@ -101,7 +101,7 @@ public class Post extends BaseEntity {
     }
 
     public void addPlace(Place place) {
-        places.add(place)
+        places.add(place);
 
     }
 }
