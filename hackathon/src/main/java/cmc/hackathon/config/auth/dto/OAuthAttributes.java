@@ -28,7 +28,7 @@ public class OAuthAttributes {
             return ofNaver("id", attributes);
         }
         if("kakao".equals(registrationId)){
-            return ofKakao("id2", attributes);
+            return ofKakao("id", attributes);
         }
 
         return ofGoogle(userNameAttributeName, attributes);

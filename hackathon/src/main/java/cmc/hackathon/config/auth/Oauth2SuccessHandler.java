@@ -15,7 +15,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.Optional;
 
 @RequiredArgsConstructor
@@ -34,8 +33,10 @@ public class Oauth2SuccessHandler extends SimpleUrlAuthenticationSuccessHandler 
         Optional<Member> member = memberRepository.findByEmail(sessionMember.getEmail());
 
         String jwt = jwtService.createJwt(member.get().getId());
+        System.out.println(member.get().getId()+"??????????????????????????????????????????????");
+        System.out.println(sessionMember.getId()+"!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+        System.out.println(jwt);
 
-        writeTokenResponse(response, jwt);
         String targetUrl = UriComponentsBuilder.fromUriString("/auth")
                 .queryParam("jwt",jwt)
                 .queryParam("id", member.get().getId())
@@ -44,18 +45,4 @@ public class Oauth2SuccessHandler extends SimpleUrlAuthenticationSuccessHandler 
 
     }
 
-    private void writeTokenResponse(HttpServletResponse response, String jwt) {
-        response.setContentType("text/html;charset=UTF-8");
-
-        response.addHeader("Jwt", jwt);
-        response.setContentType("application/json;charset=UTF-8");
-
-        try {
-            PrintWriter writer = response.getWriter();
-            writer.println(jwt);
-            writer.flush();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
 }

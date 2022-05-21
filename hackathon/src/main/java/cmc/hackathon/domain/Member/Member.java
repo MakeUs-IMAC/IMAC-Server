@@ -28,6 +28,10 @@ public class Member extends BaseEntity {
 
     private String email;
 
+    public Member() {
+
+    }
+
     @Builder
     public Member(Long id, String image, String name, String email) {
         this.id = id;
