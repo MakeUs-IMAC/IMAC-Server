@@ -75,4 +75,9 @@ public class PostService {
         return postRepository.findById(postId);
     }
 
+    public void updateStatus(Long postId, TravelStatus travelStatus) {
+        Optional<Post> post = postRepository.findById(postId);
+        post.get().updateStatus(travelStatus);
+    }
+
 }

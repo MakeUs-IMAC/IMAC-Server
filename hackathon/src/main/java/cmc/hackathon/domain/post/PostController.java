@@ -29,7 +29,7 @@ public class PostController {
 
     @ApiOperation("여행 모집 글 쓰긩")
     @PostMapping("/new")
-    public BaseResponse<String> PostCreate(@RequestBody Long userId, PostCreateReq postCreateReq, @RequestPart(required = false) MultipartFile image) throws IOException {
+    public BaseResponse<String> createPost(@RequestBody Long userId, PostCreateReq postCreateReq, @RequestPart(required = false) MultipartFile image) throws IOException {
 
         try {
             Long userIdByJwt = jwtService.getUserIdx();
@@ -50,7 +50,7 @@ public class PostController {
 
     @ApiOperation("여행 글 전체 조회")
     @GetMapping("/")
-    public BaseResponse<List<GetAllRes>> PostingList(Long userId){
+    public BaseResponse<List<GetAllRes>> getPostingList(Long userId){
         return new BaseResponse<>(postService.findPosts(userId));
     }
 
@@ -61,4 +61,13 @@ public class PostController {
         GetDetailRes getDetailRes = new GetDetailRes(post);
         return new BaseResponse<>(getDetailRes);
     }
+
+
+    @ApiOperation("상태 수정")
+    @PatchMapping("/{postId}")
+    public BaseResponse<String> updatePostStatus(@PathVariable("postId") Long postId, @RequestBody TravelStatus travelStatus){
+        postService.updateStatus(postId, travelStatus);
+        return new BaseResponse<String>("");
+    }
+
 }
