@@ -64,7 +64,7 @@ public class PostController {
     }
 
     @ApiOperation("동행자 지원")
-    @PatchMapping("/{postId}/{applicantsId")
+    @PatchMapping("/{postId}/{applicantsId}")
     public BaseResponse<String> addApplicants(@PathVariable(name = "PostId") Long postId, @PathVariable(name = "applicantsId") Long applicantsId){
 
         try {
