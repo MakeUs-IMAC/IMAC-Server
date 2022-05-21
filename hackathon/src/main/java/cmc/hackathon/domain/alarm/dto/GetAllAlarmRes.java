@@ -9,14 +9,14 @@ import org.springframework.stereotype.Service;
 
 @Getter
 @Setter
-public class GetAllRes {
+public class GetAllAlarmRes {
     private Long id;
     private Long toId;
     private Long fromId;
     private String message;
 
     @Builder
-    public GetAllRes(Alarm alarm){
+    public GetAllAlarmRes(Alarm alarm){
         this.id = alarm.getId();
         this.toId = alarm.getTo().getId();
         this.fromId = alarm.getFrom().getId();
