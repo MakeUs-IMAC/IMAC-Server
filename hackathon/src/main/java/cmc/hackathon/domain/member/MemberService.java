@@ -65,4 +65,10 @@ public class MemberService {
         Optional<Member> member = memberRepository.findById(userId);
         return member;
     }
+
+    public List<Post> getMemberTravel(Long userId) {
+        Optional<Member> member = memberRepository.findById(userId);
+        return member.get().getPosts();
+
+    }
 }
