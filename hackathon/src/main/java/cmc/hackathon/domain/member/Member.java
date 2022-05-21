@@ -102,4 +102,8 @@ public class Member extends BaseEntity {
     public void delete() {
         changeStatus(Status.DELETED);
     }
+
+    public void updateReview(Review review){
+        this.getReviews().add(review);
+    }
 }
