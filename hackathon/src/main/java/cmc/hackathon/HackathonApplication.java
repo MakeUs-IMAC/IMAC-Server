@@ -17,6 +17,8 @@ public class HackathonApplication {
 		new SpringApplicationBuilder(HackathonApplication.class)
 				.properties(APPLICATION_LOCATIONS)
 				.run(args);
+
+//		SpringApplication.run(HackathonApplication.class, args);
 	}
 
 }

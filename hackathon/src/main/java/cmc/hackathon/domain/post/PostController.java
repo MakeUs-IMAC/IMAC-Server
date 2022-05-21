@@ -59,4 +59,11 @@ public class PostController {
 //    public BaseResponse<GetDetailRes> Posting(@PathVariable("postId") Long postId){
 //        return new BaseResponse<GetDetailRes>(postService.findOne(postId));
 //    }
+
+    @ApiOperation("상태 수정")
+    @PatchMapping("/{postId}")
+    public BaseResponse<String> updatePostStatus(@PathVariable("postId") Long postId, @RequestBody TravelStatus travelStatus){
+        postService.updateStatus(postId, travelStatus);
+        return new BaseResponse<String>("");
+    }
 }

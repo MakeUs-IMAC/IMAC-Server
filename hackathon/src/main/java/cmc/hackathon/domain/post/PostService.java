@@ -3,9 +3,7 @@ package cmc.hackathon.domain.post;
 import cmc.hackathon.domain.member.Member;
 import cmc.hackathon.domain.member.MemberRepository;
 import cmc.hackathon.domain.member.Role;
-import cmc.hackathon.domain.place.dto.PlaceResponseDto;
 import cmc.hackathon.domain.post.dto.GetAllRes;
-import cmc.hackathon.domain.post.dto.GetDetailRes;
 import cmc.hackathon.domain.post.dto.PostCreateReq;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -46,6 +44,11 @@ public class PostService {
                 .collect(Collectors.toList());
 
         return getAllRes;
+    }
+
+    public void updateStatus(Long postId, TravelStatus travelStatus) {
+        Optional<Post> post = postRepository.findById(postId);
+        post.get().updateStatus(travelStatus);
     }
 
 //

@@ -10,6 +10,7 @@ import cmc.hackathon.domain.post.dto.GetAllRes;
 import cmc.hackathon.domain.post.dto.PostCreateReq;
 import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import org.hibernate.annotations.Where;
 import org.springframework.security.core.userdetails.User;
 
@@ -63,6 +64,10 @@ public class Post extends BaseEntity {
 
     @OneToMany(mappedBy = "post", cascade = CascadeType.ALL)
     private List<Applicants> applicants = new ArrayList<>();
+
+    public void updateStatus(TravelStatus travelStatus){
+        this.travelStatus = travelStatus;
+    }
 
     @Builder
     public Post(PostCreateReq postCreateReq){
