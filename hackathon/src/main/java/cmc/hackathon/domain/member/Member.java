@@ -103,7 +103,20 @@ public class Member extends BaseEntity {
         changeStatus(Status.DELETED);
     }
 
+
+    public int getAverageRate() {
+        int sum = 0;
+        for (Review review : reviews) {
+            sum += review.getRate();
+        }
+        return sum/ reviews.size();
+    }
+
+    public void addPost(Post post) {
+        this.posts.add(post);
+    }
     public void updateReview(Review review){
         this.getReviews().add(review);
+
     }
 }

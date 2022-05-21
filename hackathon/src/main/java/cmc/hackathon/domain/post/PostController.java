@@ -15,9 +15,9 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.IOException;
 import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
 
-import static cmc.hackathon.config.BaseResponseStatus.EMPTY_JWT;
-import static cmc.hackathon.config.BaseResponseStatus.INVALID_USER_JWT;
+import static cmc.hackathon.config.BaseResponseStatus.*;
 
 @RequestMapping("/post")
 @RestController
@@ -54,11 +54,14 @@ public class PostController {
         return new BaseResponse<>(postService.findPosts(userId));
     }
 
-//    @ApiOperation("글 상세 조회")
-//    @GetMapping("/{postId}")
-//    public BaseResponse<GetDetailRes> Posting(@PathVariable("postId") Long postId){
-//        return new BaseResponse<GetDetailRes>(postService.findOne(postId));
-//    }
+    @ApiOperation("글 상세 조회")
+    @GetMapping("/{postId}")
+    public BaseResponse<GetDetailRes> Posting(@PathVariable("postId") Long postId){
+        Post post = postService.findById(postId).get();
+        GetDetailRes getDetailRes = new GetDetailRes(post);
+        return new BaseResponse<>(getDetailRes);
+    }
+
 
     @ApiOperation("상태 수정")
     @PatchMapping("/{postId}")
@@ -66,6 +69,5 @@ public class PostController {
         postService.updateStatus(postId, travelStatus);
         return new BaseResponse<String>("");
     }
-
 
 }

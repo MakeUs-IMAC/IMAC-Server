@@ -1,9 +1,12 @@
 package cmc.hackathon.domain.post;
 
+import cmc.hackathon.domain.address.Address;
 import cmc.hackathon.domain.member.Member;
 import cmc.hackathon.domain.member.MemberRepository;
 import cmc.hackathon.domain.member.Role;
+import cmc.hackathon.domain.place.Place;
 import cmc.hackathon.domain.post.dto.GetAllRes;
+import cmc.hackathon.domain.post.dto.PlaceDto;
 import cmc.hackathon.domain.post.dto.PostCreateReq;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -14,17 +17,39 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
-@Transactional
+@Transactional(readOnly = true)
 @RequiredArgsConstructor
 public class PostService {
     private final PostRepository postRepository;
     private final MemberRepository memberRepository;
 
+    @Transactional
     public void save(Long userId, PostCreateReq postCreateReq, String url) {
+        //엔티티 조회
         Optional<Member> member = memberRepository.findById(userId);
-        postCreateReq.setMember(member.get());
-        postCreateReq.setImage(url);
-        postCreateReq.toEntity();
+
+        //엔티티 생성
+        Post post = Post.builder()
+                .startDate(postCreateReq.getStart())
+                .endDate(postCreateReq.getEnd())
+                .content(postCreateReq.getContent())
+                .image(url)
+                .participants(postCreateReq.getParticipants())
+                .driverFlag(postCreateReq.getDriverFlag())
+                .build();
+        post.changeMember(member.get());
+
+        List<Place> places = postCreateReq.getPlaces().stream().map(p -> Place.create(post))
+                        .collect(Collectors.toList());
+
+        int i =0;
+//        for (Place place : places) {
+//            place.getAddresses() = postCreateReq.getPlaces().get(i++).getAddressDtos()
+//                    .stream()
+//                    .map(a-> Address.create(place, a.getAddress(), a.getName()))
+//                    .collect(Collectors.toList());
+//        }
+
     }
 
     public List<GetAllRes> findPosts(Long userId) {
@@ -46,15 +71,13 @@ public class PostService {
         return getAllRes;
     }
 
+    public Optional<Post> findById(Long postId) {
+        return postRepository.findById(postId);
+    }
+
     public void updateStatus(Long postId, TravelStatus travelStatus) {
         Optional<Post> post = postRepository.findById(postId);
         post.get().updateStatus(travelStatus);
     }
 
-//
-//    public GetDetailRes findOne(Long postId) {
-//        Optional<Post> post = postRepository.findById(postId);
-//        List<PlaceResponseDto> placeResponseDtos = post.get().getPlaces().stream().map(p -> p)
-//                .collect(Collectors.toList());
-//    }
 }

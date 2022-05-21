@@ -45,6 +45,7 @@ public class Post extends BaseEntity {
     //기사 모집 여부 0: false 1: true
     private int driverFlag;
 
+    @Column(length = 20, columnDefinition = "varchar(20) default 'RECRUIT'")
     @Enumerated(EnumType.STRING)
     private TravelStatus travelStatus;
 
@@ -74,15 +75,33 @@ public class Post extends BaseEntity {
     }
 
     @Builder
-    public Post(PostCreateReq postCreateReq){
-        this.region = postCreateReq.getRegion();
-        this.image = postCreateReq.getImage();
-        this.content = postCreateReq.getContent();
-        this.participants = postCreateReq.getParticipants();
-        this.driverFlag = postCreateReq.getDriverFlag();
-        this.member = postCreateReq.getMember();
-        this.startDate = postCreateReq.getStart();
-        this.endDate = postCreateReq.getEnd();
-        this.places = postCreateReq.getPlaces();
+    public Post(Long id, Region region, String image, String content, int participants, int driverFlag, TravelStatus travelStatus, Member member, LocalDateTime startDate, LocalDateTime endDate, List<Place> places, List<Favorite> favorites, List<Applicants> applicants) {
+        this.id = id;
+        this.region = region;
+        this.image = image;
+        this.content = content;
+        this.participants = participants;
+        this.driverFlag = driverFlag;
+        this.travelStatus = travelStatus;
+        this.member = member;
+        this.startDate = startDate;
+        this.endDate = endDate;
+        this.places = places;
+        this.favorites = favorites;
+        this.applicants = applicants;
+    }
+
+    public int getFavoriteCount() {
+        return favorites.size();
+    }
+
+    public void changeMember(Member member) {
+        this.member = member;
+        member.addPost(this);
+    }
+
+    public void addPlace(Place place) {
+        places.add(place)
+
     }
 }
