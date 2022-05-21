@@ -4,17 +4,22 @@ import cmc.hackathon.domain.Region;
 import cmc.hackathon.domain.post.Post;
 import lombok.Data;
 
+import java.time.LocalDateTime;
+
 @Data
 public class GetMemberFavoriteRes {
 
     private String image;
     private Region region;
-    //기간
+    private LocalDateTime start;
+    private LocalDateTime end;
     private int participants;
 
     public GetMemberFavoriteRes(Post post) {
         this.image = post.getImage();
         this.region = post.getRegion();
+        this.start = post.getStart();
+        this.end = post.getEnd();
         this.participants = post.getParticipants();
     }
 }
