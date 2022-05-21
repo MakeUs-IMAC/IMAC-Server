@@ -161,4 +161,24 @@ public class MemberController {
             return new BaseResponse<>(EMPTY_JWT);
         }
     }
+
+    @ApiOperation("여행 관리")
+    @GetMapping("/travel/{userId}")
+    public BaseResponse<List<GetMemberTravelReq>> getMemberTravel(@PathVariable Long userId) {
+        try {
+            Long userIdByJwt = jwtService.getUserIdx();
+            if (!Objects.equals(userId, userIdByJwt)) {
+                return new BaseResponse<>(INVALID_USER_JWT);
+            }
+
+            List<Post> memberTravel = memberService.getMemberTravel(userId);
+            List<GetMemberTravelReq> getMemberTravelReqs = memberTravel.stream()
+                    .map(GetMemberTravelReq::new)
+                    .collect(toList());
+
+            return new BaseResponse<>(getMemberTravelReqs);
+        } catch (BaseException e) {
+            return new BaseResponse<>(EMPTY_JWT);
+        }
+    }
 }
