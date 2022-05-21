@@ -4,7 +4,9 @@ import cmc.hackathon.domain.Gender;
 import cmc.hackathon.domain.applicants.Applicants;
 import cmc.hackathon.domain.member.CarType;
 import cmc.hackathon.domain.member.Role;
+import lombok.Data;
 
+@Data
 public class ApplicantsDto {
 
     private Long memberId;

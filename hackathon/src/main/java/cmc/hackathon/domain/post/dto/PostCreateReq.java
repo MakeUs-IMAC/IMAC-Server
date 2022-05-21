@@ -12,7 +12,6 @@ import java.util.List;
 @Getter
 @Setter
 public class PostCreateReq {
-    private String image;
     private Region region;
     private String content;
     private int participants;
