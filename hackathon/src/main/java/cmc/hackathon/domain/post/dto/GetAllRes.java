@@ -3,6 +3,7 @@ package cmc.hackathon.domain.post.dto;
 import cmc.hackathon.domain.Region;
 import cmc.hackathon.domain.post.Post;
 import lombok.Builder;
+import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -21,6 +22,9 @@ public class GetAllRes {
     private LocalDateTime end;
     //인원
     private int participants;
+
+    public GetAllRes() {
+    }
 
     @Builder
     public GetAllRes(Post post){

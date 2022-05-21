@@ -7,6 +7,7 @@ import cmc.hackathon.domain.place.Place;
 import cmc.hackathon.domain.place.dto.PlaceResponseDto;
 import cmc.hackathon.domain.post.Post;
 import lombok.Builder;
+import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -44,6 +45,9 @@ public class GetDetailRes {
 
     //인원
     private int participants;
+
+    public GetDetailRes() {
+    }
 
     @Builder
     public GetDetailRes(Post post, List<PlaceResponseDto> placeResponseDto, List<FavoriteResponseDto> favoriteResponseDtos){

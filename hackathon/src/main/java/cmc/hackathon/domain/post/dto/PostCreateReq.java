@@ -4,6 +4,7 @@ import cmc.hackathon.domain.Region;
 import cmc.hackathon.domain.member.Member;
 import cmc.hackathon.domain.place.Place;
 import cmc.hackathon.domain.post.Post;
+import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 

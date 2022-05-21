@@ -64,6 +64,9 @@ public class Post extends BaseEntity {
     @OneToMany(mappedBy = "post", cascade = CascadeType.ALL)
     private List<Applicants> applicants = new ArrayList<>();
 
+    public Post() {
+    }
+
     @Builder
     public Post(PostCreateReq postCreateReq){
         this.region = postCreateReq.getRegion();
