@@ -1,6 +1,6 @@
 package cmc.hackathon.config.auth.dto;
 
-import cmc.hackathon.domain.Member.Member;
+import cmc.hackathon.domain.member.Member;
 import lombok.Builder;
 import lombok.Getter;
 

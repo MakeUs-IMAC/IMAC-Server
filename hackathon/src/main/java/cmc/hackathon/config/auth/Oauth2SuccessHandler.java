@@ -1,8 +1,8 @@
 package cmc.hackathon.config.auth;
 
 import cmc.hackathon.config.auth.dto.SessionMember;
-import cmc.hackathon.domain.Member.Member;
-import cmc.hackathon.domain.Member.MemberRepository;
+import cmc.hackathon.domain.member.Member;
+import cmc.hackathon.domain.member.MemberRepository;
 import cmc.hackathon.utils.JwtService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.Authentication;

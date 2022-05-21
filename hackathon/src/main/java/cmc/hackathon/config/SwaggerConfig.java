@@ -26,9 +26,9 @@ public class SwaggerConfig {
 
     private ApiInfo apiInfo() {
         return new ApiInfoBuilder()
-                .title("cmc hackathon")
+                .title("Torip")
                 .version("1.0.0")
-                .description("오cmc hackathon의 swagger api")
+                .description("Torip의 swagger api")
                 .build();
     }
 }

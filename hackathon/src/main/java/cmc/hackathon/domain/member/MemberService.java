@@ -1,4 +1,4 @@
-package cmc.hackathon.domain.Member;
+package cmc.hackathon.domain.member;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;

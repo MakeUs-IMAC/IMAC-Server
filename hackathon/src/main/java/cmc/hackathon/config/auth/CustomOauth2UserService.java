@@ -2,8 +2,8 @@ package cmc.hackathon.config.auth;
 
 import cmc.hackathon.config.auth.dto.OAuthAttributes;
 import cmc.hackathon.config.auth.dto.SessionMember;
-import cmc.hackathon.domain.Member.Member;
-import cmc.hackathon.domain.Member.MemberRepository;
+import cmc.hackathon.domain.member.Member;
+import cmc.hackathon.domain.member.MemberRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.oauth2.client.userinfo.DefaultOAuth2UserService;
@@ -46,7 +46,7 @@ public class CustomOauth2UserService implements OAuth2UserService<OAuth2UserRequ
 
     private Member saveOrUpdate(OAuthAttributes attributes) {
         Member member = memberRepository.findByEmail(attributes.getEmail())
-                .map(entity -> entity.update(attributes.getName(), attributes.getPicture()))
+                .map(entity -> entity.update(attributes.getName()))
                 .orElse(attributes.toEntity());
 
         return memberRepository.save(member);

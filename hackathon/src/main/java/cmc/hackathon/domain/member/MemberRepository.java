@@ -1,4 +1,4 @@
-package cmc.hackathon.domain.Member;
+package cmc.hackathon.domain.member;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
