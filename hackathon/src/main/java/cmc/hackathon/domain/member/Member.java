@@ -3,6 +3,7 @@ package cmc.hackathon.domain.member;
 import cmc.hackathon.domain.BaseEntity;
 import cmc.hackathon.domain.Gender;
 import cmc.hackathon.domain.Status;
+import cmc.hackathon.domain.alarm.Alarm;
 import cmc.hackathon.domain.applicants.Applicants;
 import cmc.hackathon.domain.favorite.Favorite;
 import cmc.hackathon.domain.post.Post;
@@ -61,6 +62,9 @@ public class Member extends BaseEntity {
 
     @OneToMany(mappedBy = "driver", cascade = CascadeType.ALL)
     private List<Review> reviews = new ArrayList<>();
+
+    @OneToMany(mappedBy = "to", cascade = CascadeType.ALL)
+    private List<Alarm> alarms = new ArrayList<>();
 
 
     public Member() {

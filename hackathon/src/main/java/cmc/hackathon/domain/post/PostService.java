@@ -1,6 +1,7 @@
 package cmc.hackathon.domain.post;
 
 import cmc.hackathon.domain.address.Address;
+import cmc.hackathon.domain.alarm.AlarmService;
 import cmc.hackathon.domain.applicants.Applicants;
 import cmc.hackathon.domain.companion.Companion;
 import cmc.hackathon.domain.member.Member;
@@ -23,6 +24,7 @@ import java.util.stream.Collectors;
 public class PostService {
     private final PostRepository postRepository;
     private final MemberRepository memberRepository;
+    private final AlarmService alarmService;
 
     @Transactional
     public void save(Long userId, PostCreateReq postCreateReq, String url) {
@@ -83,9 +85,10 @@ public class PostService {
 
     public void updateCompanion(Long postId, Long userId) {
         Optional<Post> post = postRepository.findById(postId);
+        Member member = memberRepository.findById(userId).get();
         Companion companion = Companion.builder()
                 .post(post.get())
-                .member(memberRepository.findById(userId).get())
+                .member(member)
                 .build();
 
         post.get().updateCompanions(companion);
@@ -98,6 +101,10 @@ public class PostService {
                         .post(post.get())
                                 .member(member.get())
                                         .build();
+
+        String message = applicantsId + "님이 회원님의 모집에 지원했어요!";
+
+        alarmService.save(applicantsId, post.get().getMember().getId(), message);
 
         post.get().addApplicants(applicant);
     }

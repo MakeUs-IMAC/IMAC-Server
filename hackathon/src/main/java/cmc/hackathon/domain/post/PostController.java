@@ -2,6 +2,7 @@ package cmc.hackathon.domain.post;
 
 import cmc.hackathon.config.BaseException;
 import cmc.hackathon.config.BaseResponse;
+import cmc.hackathon.domain.alarm.AlarmService;
 import cmc.hackathon.domain.post.dto.GetAllRes;
 import cmc.hackathon.domain.post.dto.GetDetailRes;
 import cmc.hackathon.domain.post.dto.PostCreateReq;
