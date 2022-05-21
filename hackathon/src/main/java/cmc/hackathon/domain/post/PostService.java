@@ -43,12 +43,12 @@ public class PostService {
                         .collect(Collectors.toList());
 
         int i =0;
-//        for (Place place : places) {
-//            place.getAddresses() = postCreateReq.getPlaces().get(i++).getAddressDtos()
-//                    .stream()
-//                    .map(a-> Address.create(place, a.getAddress(), a.getName()))
-//                    .collect(Collectors.toList());
-//        }
+        for (Place place : places) {
+            place.changeAddresses(postCreateReq.getPlaces().get(i++).getAddressDtos()
+                    .stream()
+                    .map(a-> Address.create(place, a.getAddress(), a.getName()))
+                    .collect(Collectors.toList()));
+        }
 
     }
 
