@@ -18,8 +18,8 @@ public class GetMemberFavoriteRes {
     public GetMemberFavoriteRes(Post post) {
         this.image = post.getImage();
         this.region = post.getRegion();
-        this.start = post.getStart();
-        this.end = post.getEnd();
+        this.start = post.getStartDate();
+        this.end = post.getEndDate();
         this.participants = post.getParticipants();
     }
 }

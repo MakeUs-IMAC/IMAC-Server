@@ -52,8 +52,8 @@ public class GetDetailRes {
         this.image = post.getImage();
         this.driverFlag = post.getDriverFlag();
         this.memberId = post.getMember().getId();
-        this.start = post.getStart();
-        this.end = post.getEnd();
+        this.start = post.getStartDate();
+        this.end = post.getEndDate();
         this.placeResponseDtos = placeResponseDto;
         this.favoriteResponseDtos = favoriteResponseDtos;
         this.participants = post.getParticipants();
