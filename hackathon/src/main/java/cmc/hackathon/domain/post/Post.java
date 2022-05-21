@@ -3,6 +3,7 @@ package cmc.hackathon.domain.post;
 import cmc.hackathon.domain.BaseEntity;
 import cmc.hackathon.domain.Region;
 import cmc.hackathon.domain.applicants.Applicants;
+import cmc.hackathon.domain.companion.Companion;
 import cmc.hackathon.domain.favorite.Favorite;
 import cmc.hackathon.domain.member.Member;
 import cmc.hackathon.domain.place.Place;
@@ -63,8 +64,13 @@ public class Post extends BaseEntity {
     @OneToMany(mappedBy = "post", cascade = CascadeType.ALL)
     private List<Favorite> favorites = new ArrayList<>();
 
+    //지원자
     @OneToMany(mappedBy = "post", cascade = CascadeType.ALL)
     private List<Applicants> applicants = new ArrayList<>();
+
+    //참가자
+    @OneToMany(mappedBy = "post", cascade = CascadeType.ALL)
+    private List<Companion> companions = new ArrayList<>();
 
     public Post() {
 
@@ -103,5 +109,9 @@ public class Post extends BaseEntity {
     public void addPlace(Place place) {
         places.add(place);
 
+    }
+
+    public void updateCompanions(Companion companion){
+        this.companions.add(companion);
     }
 }

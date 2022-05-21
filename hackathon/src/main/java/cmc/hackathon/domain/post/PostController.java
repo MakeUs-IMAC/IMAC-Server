@@ -70,4 +70,11 @@ public class PostController {
         return new BaseResponse<String>("");
     }
 
+    @ApiOperation("동행자 추가")
+    @PatchMapping("/{postId}/{userId}")
+    public BaseResponse<String> updateCompanion(@PathVariable("postId") Long postId, @PathVariable(name = "userId") Long userId){
+        postService.updateCompanion(postId, userId);
+        return new BaseResponse<String>("");
+    }
+
 }

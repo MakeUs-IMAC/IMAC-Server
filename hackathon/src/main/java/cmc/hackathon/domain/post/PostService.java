@@ -1,6 +1,8 @@
 package cmc.hackathon.domain.post;
 
 import cmc.hackathon.domain.address.Address;
+import cmc.hackathon.domain.applicants.Applicants;
+import cmc.hackathon.domain.companion.Companion;
 import cmc.hackathon.domain.member.Member;
 import cmc.hackathon.domain.member.MemberRepository;
 import cmc.hackathon.domain.member.Role;
@@ -80,4 +82,13 @@ public class PostService {
         post.get().updateStatus(travelStatus);
     }
 
+    public void updateCompanion(Long postId, Long userId) {
+        Optional<Post> post = postRepository.findById(postId);
+        Companion companion = Companion.builder()
+                .post(post.get())
+                .member(memberRepository.findById(userId).get())
+                .build();
+
+        post.get().updateCompanions(companion);
+    }
 }
