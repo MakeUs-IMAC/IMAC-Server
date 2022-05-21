@@ -1,24 +1,19 @@
 package cmc.hackathon.domain.post.dto;
 
 import cmc.hackathon.domain.Region;
-import cmc.hackathon.domain.favorite.Favorite;
-import cmc.hackathon.domain.favorite.dto.FavoriteResponseDto;
-import cmc.hackathon.domain.place.Place;
-import cmc.hackathon.domain.place.dto.PlaceResponseDto;
 import cmc.hackathon.domain.post.Post;
-import lombok.Builder;
-import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
 import java.time.LocalDateTime;
 import java.util.List;
-import java.util.stream.Collectors;
+
+import static java.util.stream.Collectors.*;
 
 @Getter
 @Setter
 public class GetDetailRes {
-    private Long id;
+    private Long postId;
 
     //지역
     private Region region;
@@ -31,35 +26,36 @@ public class GetDetailRes {
     //기사 모집 여부
     private int driverFlag;
 
-    private Long memberId;
-
     //기간
     private LocalDateTime start;
     private LocalDateTime end;
 
     //장소 리스트
-    private List<PlaceResponseDto> placeResponseDtos;
+    private List<PlaceDto> placeDtos;
 
     //찜 ~~~
-    private List<FavoriteResponseDto> favoriteResponseDtos;
+    private int favoriteCount;
 
     //인원
     private int participants;
 
-    public GetDetailRes() {
-    }
+    private List<ApplicantsDto> applicantsDtos;
 
-    @Builder
-    public GetDetailRes(Post post, List<PlaceResponseDto> placeResponseDto, List<FavoriteResponseDto> favoriteResponseDtos){
-        this.id = post.getId();
+    public GetDetailRes(Post post) {
+        this.postId = post.getId();
         this.region = post.getRegion();
         this.image = post.getImage();
+        this.content = post.getContent();
         this.driverFlag = post.getDriverFlag();
-        this.memberId = post.getMember().getId();
         this.start = post.getStartDate();
         this.end = post.getEndDate();
-        this.placeResponseDtos = placeResponseDto;
-        this.favoriteResponseDtos = favoriteResponseDtos;
+        this.placeDtos = post.getPlaces().stream()
+                .map(PlaceDto::new)
+                .collect(toList());
+        this.favoriteCount = post.getFavoriteCount();
         this.participants = post.getParticipants();
+        this.applicantsDtos = post.getApplicants().stream()
+                .map(ApplicantsDto::new)
+                .collect(toList());
     }
 }

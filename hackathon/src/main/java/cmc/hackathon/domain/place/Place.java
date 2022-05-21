@@ -26,8 +26,18 @@ public class Place {
     @OneToMany(mappedBy = "place", cascade = CascadeType.ALL)
     private List<Address> addresses = new ArrayList<>();
 
-    @Column(length = 50)
-    private String name;
+    public static Place create(Post post) {
+        Place place = new Place();
+        place.changePost(post);
+        return place;
+    }
 
+    private void changePost(Post post) {
+        this.post = post;
+        post.addPlace(this);
+    }
 
+    public void addAddress(Address address) {
+        addresses.add(address);
+    }
 }
