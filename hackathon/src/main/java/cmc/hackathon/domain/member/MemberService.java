@@ -25,7 +25,7 @@ public class MemberService {
     @Transactional
     public void addInfo(PostAddInfoReq postAddInfoReq, Long userId) {
         Optional<Member> member = memberRepository.findById(userId);
-        member.get().addInfo(postAddInfoReq.getNickName(),postAddInfoReq.getPhone(),postAddInfoReq.getGender(),postAddInfoReq.getAge());
+        member.get().addInfo(postAddInfoReq.getNickName(),postAddInfoReq.getPhone(),postAddInfoReq.getGender(),postAddInfoReq.getAge(), postAddInfoReq.getRole(),postAddInfoReq.getCarType());
     }
 
     @Transactional

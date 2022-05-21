@@ -80,11 +80,13 @@ public class Member extends BaseEntity {
         return this;
     }
 
-    public Member addInfo(String nickName, String phone, Gender gender, int age) {
+    public Member addInfo(String nickName, String phone, Gender gender, int age, Role role, CarType carType) {
         this.nickname = nickName;
         this.phone = phone;
         this.gender = gender;
         this.age = age;
+        this.role = role;
+        this.carType = carType;
         return this;
     }
 
