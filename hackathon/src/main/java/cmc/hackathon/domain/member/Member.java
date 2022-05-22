@@ -115,7 +115,10 @@ public class Member extends BaseEntity {
         for (Review review : reviews) {
             sum += review.getRate();
         }
-        return sum/ reviews.size();
+        if (reviews.size() != 0) {
+            return sum/ reviews.size();
+        }
+        return 0;
     }
 
     public void addPost(Post post) {

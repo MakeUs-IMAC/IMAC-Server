@@ -1,5 +1,5 @@
 package cmc.hackathon.domain.member;
 
 public enum CarType {
-    SMALL,SEDAN,SUV,VAN
+    SMALL,SEDAN,SUV,VAN,X
 }
